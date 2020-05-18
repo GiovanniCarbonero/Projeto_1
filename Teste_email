@@ -9,14 +9,13 @@ while True:
     for c in usuario:
 
         U = c.split()
+        
         m = U[len(U)-1]
         m2 = U[len(U)-2]
         e1 = m.lower()
         e1 = re.sub('[!-.:?]', '', e1)
         e2 = c[0].lower()
-        e2 = re.sub('[!-.:?]', '', e2)
         e3 = m2[0].lower()
-        e3 = re.sub('[!-.:?]', '', e3)
         palavras = 0
     
         print('-=-' * 20)
@@ -33,15 +32,26 @@ while True:
         
             print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
 
+        if palavras > 3:
+
+            print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
+
     print('-=-' * 20)
 
-    opt = (str(input('\n\n\nDeseja adicionar outro nome: [S/N]\n')))
+    opt = ' '
+    
+    while opt not in 'SN':
+        
+        opt = (str(input('\nDeseja adicionar outro nome: [S/N]\n'))).strip().upper()[0]
 
-    if opt in 'Ss':
+        if opt not in 'SN':
 
-        usuario.append(str(input('\n\n\nDigite o nome: ')))
+            print('\nErro! Opção inválida\ntente novamente...')
 
-    if opt in 'Nn':
+        if opt in 'S':
+
+            usuario.append(str(input('\nDigite o nome: ')))
+                
+    if opt in 'N':
 
         break
-
