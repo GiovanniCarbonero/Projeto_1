@@ -1,9 +1,13 @@
-import re
-
 usuario = ['John Doe', 'Peter Parker', 'Mary Jane Watson-Parker', 'James Doe', 'John Elvis Doe', 'Jane Doe', 'Penny Parker']
 
 while True:
     
+    import re
+    
+    email = []
+    n1 = 1
+    n2 = 1
+
     print('\n\nLista de funcionários e emails: \n')
 
     for c in usuario:
@@ -17,7 +21,8 @@ while True:
         e2 = c[0].lower()
         e3 = m2[0].lower()
         palavras = 0
-    
+        n = n1
+        
         print('-=-' * 20)
 
         for W in U:
@@ -26,18 +31,63 @@ while True:
     
         if palavras == 2:
 
-            print('\nNome: {} \nEmail: <{}.{}.@company.com>\n'.format(c, e1, e2))
-    
+            if (f'<{e1}.{e2}@company.com>') in email:
+
+                n += n1
+
+                if (f'<{e1}.{e2}{n}@company.com>') in email:
+                    
+                    n2 = n2 + n
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n2}@company.com>\n')
+                    
+                else:
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n}@company.com>\n')
+                    email.append(f'<{e1}.{e2}{n}@company.com>')
+                
+            else:
+                print('\nNome: {} \nEmail: <{}.{}@company.com>\n'.format(c, e1, e2))
+                email.append(f'<{e1}.{e2}@company.com>')
+                
         if palavras == 3:
-        
-            print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
+            
+            if (f'<{e1}.{e2}.{e3}@company.com>') in email:
 
+                n += n1
+
+                if (f'<{e1}.{e2}{n}.{e3}@company.com>') in email:
+                    
+                    n2 = n2 + n
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n2}.{e3}@company.com>\n')
+                    
+                else:
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n}.{e3}@company.com>\n')
+                    email.append(f'<{e1}.{e2}{n}@company.com>')
+                
+            else:
+                print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
+                email.append(f'<{e1}.{e2}.{e3}@company.com>')
+            
         if palavras > 3:
+            
+            if (f'<{e1}.{e2}.{e3}@company.com>') in email:
 
-            print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
+                n += n1
 
+                if (f'<{e1}.{e2}{n}.{e3}@company.com>') in email:
+                    
+                    n2 = n2 + n
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n2}.{e3}@company.com>\n')
+                    
+                else:
+                    print(f'\nNome: {c} \nEmail: <{e1}.{e2}{n}.{e3}@company.com>\n')
+                    email.append(f'<{e1}.{e2}{n}@company.com>')
+                
+            else:
+                print('\nNome: {} \nEmail: <{}.{}.{}@company.com>\n'.format(c, e1, e2, e3))
+                email.append(f'<{e1}.{e2}.{e3}@company.com>')
+            
     print('-=-' * 20)
-
+        
     opt = ' '
     
     while opt not in 'SN':
@@ -49,7 +99,7 @@ while True:
             print('\nErro! Opção inválida\ntente novamente...')
 
         if opt in 'S':
-
+            
             usuario.append(str(input('\nDigite o nome: ')))
                 
     if opt in 'N':
